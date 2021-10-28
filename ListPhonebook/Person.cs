@@ -56,11 +56,19 @@ namespace ListPhonebook
                 PrintPhonebook(person);
             }
             Console.WriteLine("Enter a number (starting from 0 from the top) for the entry you want to remove");
-            int input = Convert.ToInt32(Console.ReadLine());
-            //Try-catch eller if-sats här för fel input
-            Phonebook.Remove(Phonebook[input]);
-            Console.WriteLine($"\nThe entry at index [{input}] has been removed.");
-            Console.ReadKey();
+            
+            try
+            {
+                int input = Convert.ToInt32(Console.ReadLine());
+                Phonebook.Remove(Phonebook[input]);
+                Console.WriteLine($"\nThe entry at index [{input}] has been removed.");
+                Console.ReadKey();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Unexpexted error: {exception.Message}");
+                Console.ReadLine();
+            }
 
         }
     }
