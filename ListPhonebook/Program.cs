@@ -39,6 +39,11 @@ namespace ListPhonebook
                         Console.ReadLine();
                         loop = false;
                         break;
+
+                    default:
+                        Console.WriteLine("Did not recognize input. . .");
+                        Console.ReadLine();
+                        break;
                 }
             }
         }
