@@ -28,30 +28,38 @@ namespace ListPhonebook
                     Console.ReadKey(true);
                     continue;
                 }
-                Console.Write("\nEnter phonenumber: ");
-                person.PhoneNumber = Console.ReadLine();
-                for (var i = 0; i < person.PhoneNumber.Length; i++) //Checks if input contains letters
+                bool secondLoop = true;
+                while (secondLoop)     //Second loop to avoid repeating name input
                 {
-                    if (person.PhoneNumber[i] >= 'a' && person.PhoneNumber[i] <= 'z')
-                    {
-                        isValid = false;
-                    }
-                    else
-                    {
-                        isValid = true;
-                    }
-                }
-                if (isValid == false)
-                {
-                    Console.WriteLine("Error, input was not a number");
-                    Console.ReadKey();
-                    continue;
-                }else if(isValid == true)
-                {
-                Phonebook.Add(person);
-                break;
-                }
+                    Console.Clear();
+                    Console.WriteLine($"Name: {person.FirstName}\n");
+                    Console.Write("\nEnter phonenumber: ");
+                    person.PhoneNumber = Console.ReadLine();
 
+                    for (var i = 0; i < person.PhoneNumber.Length; i++) //Checks if input contains letters
+                    {
+                        if (person.PhoneNumber[i] >= 'a' && person.PhoneNumber[i] <= 'z')
+                        {
+                            isValid = false;
+                        }
+                        else
+                        {
+                            isValid = true;
+                        }
+                    }
+                    if (isValid == false)
+                    {
+                        Console.WriteLine("Error, input was not a number");
+                        Console.ReadKey();
+                        continue;
+                    }
+                    else if (isValid == true)
+                    {
+                        Phonebook.Add(person);
+                        break;
+                    }
+                }
+                loop = false;
             }
         }
 
@@ -87,7 +95,7 @@ namespace ListPhonebook
             {
                 PrintPhonebook(person);
             }
-            Console.WriteLine("Enter a number (starting from 0 from the top) for the entry you want to remove");
+            Console.WriteLine("\nEnter a number (starting from 0 from the top) for the entry you want to remove\n");
 
             try
             {

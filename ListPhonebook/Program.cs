@@ -12,7 +12,7 @@ namespace ListPhonebook
             {
                 Console.Clear();
                 Person person = new();
-                Console.WriteLine("Choose option");
+                Console.WriteLine("Choose option\n");
                 Console.WriteLine("1. Add new entry to phonebook 2. List entries in phonebook 3. Remove entry in phonebook");
                 Console.WriteLine("4. Exit");
                 ConsoleKey input = Console.ReadKey(true).Key;
@@ -35,13 +35,13 @@ namespace ListPhonebook
                         break;
                     
                     case ConsoleKey.D4:
-                        Console.WriteLine("Shutting down. . .");
+                        Console.WriteLine("\nShutting down. . .");
                         Console.ReadLine();
                         loop = false;
                         break;
 
                     default:
-                        Console.WriteLine("Did not recognize input. . .");
+                        Console.WriteLine("\nDid not recognize input. . .");
                         Console.ReadLine();
                         break;
                 }
