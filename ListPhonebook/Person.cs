@@ -14,13 +14,45 @@ namespace ListPhonebook
         public static List<Person> Phonebook = new List<Person>();
         public void AddPerson()
         {
-            Person person = new();
-            Console.Write("Enter name: ");
-            person.FirstName = Console.ReadLine().ToUpper();
-            Console.Write("\nEnter phonenumber: ");
-            person.PhoneNumber = Console.ReadLine();
+            bool loop = true;
+            bool isValid = false;
+            while (loop)
+            {
+                Person person = new();
+                Console.Clear();
+                Console.Write("Enter name: ");
+                person.FirstName = Console.ReadLine().ToUpper();
+                if (string.IsNullOrEmpty(person.FirstName))
+                {
+                    Console.WriteLine("Input can't be empty!");
+                    Console.ReadKey(true);
+                    continue;
+                }
+                Console.Write("\nEnter phonenumber: ");
+                person.PhoneNumber = Console.ReadLine();
+                for (var i = 0; i < person.PhoneNumber.Length; i++) //Checks if input contains letters
+                {
+                    if (person.PhoneNumber[i] >= 'a' && person.PhoneNumber[i] <= 'z')
+                    {
+                        isValid = false;
+                    }
+                    else
+                    {
+                        isValid = true;
+                    }
+                }
+                if (isValid == false)
+                {
+                    Console.WriteLine("Error, input was not a number");
+                    Console.ReadKey();
+                    continue;
+                }else if(isValid == true)
+                {
+                Phonebook.Add(person);
+                break;
+                }
 
-            Phonebook.Add(person);
+            }
         }
 
         public static void PrintPhonebook(Person person)
@@ -32,7 +64,7 @@ namespace ListPhonebook
 
         public void ListPeople()
         {
-            if(Phonebook.Count == 0)
+            if (Phonebook.Count == 0)
             {
                 Console.WriteLine("There are no entries. . .");
                 Console.ReadKey();
@@ -49,14 +81,14 @@ namespace ListPhonebook
 
         public void RemovePerson()
         {
-            Console.WriteLine("Which name do you want to remove?");
-            
+            Console.WriteLine("Delete a contact?\n");
+
             foreach (var person in Phonebook)
             {
                 PrintPhonebook(person);
             }
             Console.WriteLine("Enter a number (starting from 0 from the top) for the entry you want to remove");
-            
+
             try
             {
                 int input = Convert.ToInt32(Console.ReadLine());
